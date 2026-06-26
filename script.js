@@ -211,3 +211,163 @@ if (covidForm && covidResult) {
     `;
   });
 }
+
+/* ============================= */
+/* Modelo 03: Ventas/Inversión */
+/* ============================= */
+
+const salesData = [
+  { inversion: 10, ventas: 55 },
+  { inversion: 18, ventas: 72 },
+  { inversion: 25, ventas: 88 },
+  { inversion: 32, ventas: 105 },
+  { inversion: 40, ventas: 124 },
+  { inversion: 48, ventas: 141 }
+];
+
+function trainLinearRegression(data) {
+  const n = data.length;
+
+  const sumX = data.reduce((sum, item) => sum + item.inversion, 0);
+  const sumY = data.reduce((sum, item) => sum + item.ventas, 0);
+  const sumXY = data.reduce((sum, item) => sum + item.inversion * item.ventas, 0);
+  const sumXX = data.reduce((sum, item) => sum + item.inversion * item.inversion, 0);
+
+  const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+  const intercept = (sumY - slope * sumX) / n;
+
+  const yMean = sumY / n;
+  const predictions = data.map((item) => intercept + slope * item.inversion);
+
+  const ssTotal = data.reduce((sum, item) => {
+    return sum + Math.pow(item.ventas - yMean, 2);
+  }, 0);
+
+  const ssResidual = data.reduce((sum, item, index) => {
+    return sum + Math.pow(item.ventas - predictions[index], 2);
+  }, 0);
+
+  const r2 = 1 - ssResidual / ssTotal;
+
+  const mae =
+    data.reduce((sum, item, index) => {
+      return sum + Math.abs(item.ventas - predictions[index]);
+    }, 0) / n;
+
+  return {
+    slope,
+    intercept,
+    r2,
+    mae,
+    predict: (x) => intercept + slope * x
+  };
+}
+
+const salesModel = trainLinearRegression(salesData);
+
+function renderSalesDashboard() {
+  const equation = document.getElementById("salesEquation");
+  const r2 = document.getElementById("salesR2");
+  const mae = document.getElementById("salesMae");
+  const table = document.getElementById("salesDataTable");
+  const chart = document.getElementById("salesMiniChart");
+  const interpretation = document.getElementById("salesInterpretation");
+
+  if (equation) {
+    equation.textContent = `Ventas = ${salesModel.intercept.toFixed(2)} + ${salesModel.slope.toFixed(2)}x`;
+  }
+
+  if (r2) {
+    r2.textContent = salesModel.r2.toFixed(4);
+  }
+
+  if (mae) {
+    mae.textContent = salesModel.mae.toFixed(2);
+  }
+
+  if (table) {
+    table.innerHTML = `
+      <div class="table-row table-head">
+        <span>Inversión</span>
+        <span>Ventas reales</span>
+        <span>Ventas estimadas</span>
+        <span>Diferencia</span>
+      </div>
+      ${salesData
+        .map((item) => {
+          const estimated = salesModel.predict(item.inversion);
+          const difference = item.ventas - estimated;
+
+          return `
+            <div class="table-row">
+              <span>${item.inversion}</span>
+              <span>${item.ventas.toFixed(0)}</span>
+              <span>${estimated.toFixed(1)}</span>
+              <strong>${difference.toFixed(1)}</strong>
+            </div>
+          `;
+        })
+        .join("")}
+    `;
+  }
+
+  if (chart) {
+    const minX = Math.min(...salesData.map((item) => item.inversion));
+    const maxX = Math.max(...salesData.map((item) => item.inversion));
+    const minY = Math.min(...salesData.map((item) => item.ventas));
+    const maxY = Math.max(...salesData.map((item) => item.ventas));
+
+    const points = salesData
+      .map((item) => {
+        const left = 10 + ((item.inversion - minX) / (maxX - minX)) * 80;
+        const bottom = 12 + ((item.ventas - minY) / (maxY - minY)) * 76;
+
+        return `
+          <span
+            class="chart-point"
+            style="left: ${left}%; bottom: ${bottom}%;"
+            data-label="${item.inversion}, ${item.ventas}">
+          </span>
+        `;
+      })
+      .join("");
+
+    chart.insertAdjacentHTML("beforeend", points);
+  }
+
+  if (interpretation) {
+    interpretation.textContent =
+      `Con los datos históricos, el modelo calcula que por cada unidad adicional de inversión publicitaria, las ventas aumentan aproximadamente ${salesModel.slope.toFixed(2)} unidades. El valor R² de ${salesModel.r2.toFixed(4)} indica un ajuste alto para este conjunto de datos.`;
+  }
+}
+
+renderSalesDashboard();
+
+const salesForm = document.getElementById("salesForm");
+const salesResult = document.getElementById("salesResult");
+
+if (salesForm && salesResult) {
+  salesForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const investment = Number(document.getElementById("investmentInput").value);
+    const estimatedSales = salesModel.predict(investment);
+
+    salesResult.classList.add("sales-result");
+
+    salesResult.innerHTML = `
+      <span class="dashboard-label">Resultado del simulador</span>
+      <h3>${estimatedSales.toFixed(2)} ventas</h3>
+      <p>
+        Para una inversión publicitaria de ${investment.toFixed(2)}, el modelo estima aproximadamente
+        ${estimatedSales.toFixed(2)} ventas.
+      </p>
+      <div class="model-formula">
+        Fórmula usada: Ventas = ${salesModel.intercept.toFixed(2)} + ${salesModel.slope.toFixed(2)} × inversión
+      </div>
+      <div class="result-confidence">
+        R² del modelo: ${salesModel.r2.toFixed(4)}
+      </div>
+    `;
+  });
+}
