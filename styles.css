@@ -415,3 +415,273 @@ footer {
     border-radius: 20px;
   }
 }
+
+/* ============================= */
+/* Optimización y responsividad */
+/* ============================= */
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+}
+
+/* Evita que textos largos rompan módulos */
+h1,
+h2,
+h3,
+p,
+span,
+button,
+strong {
+  overflow-wrap: break-word;
+}
+
+/* Mejora la barra superior en pantallas medianas */
+.topbar {
+  min-height: auto;
+}
+
+.nav-menu {
+  max-width: 100%;
+}
+
+/* Evita encimados en tarjetas horizontales */
+.model-card {
+  min-width: 0;
+}
+
+.model-card > * {
+  min-width: 0;
+}
+
+/* Botones más estables */
+button {
+  font-family: inherit;
+}
+
+.primary-btn,
+.nav-link {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Secciones más ligeras */
+.page-section {
+  min-height: auto;
+}
+
+/* Ajuste para tablets */
+@media (max-width: 1024px) {
+  .topbar {
+    width: min(100% - 28px, 1180px);
+    gap: 16px;
+  }
+
+  .nav-menu {
+    gap: 6px;
+  }
+
+  .nav-link {
+    padding: 9px 12px;
+    font-size: 0.92rem;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .hero-text h2 {
+    max-width: 100%;
+  }
+
+  .hero-card {
+    max-width: 100%;
+  }
+
+  .model-card {
+    grid-template-columns: 64px 1fr;
+  }
+
+  .model-card .primary-btn {
+    grid-column: 2;
+    width: fit-content;
+  }
+}
+
+/* Ajuste para celulares */
+@media (max-width: 720px) {
+  .topbar {
+    position: static;
+    width: min(100% - 22px, 1180px);
+    margin-top: 12px;
+    padding: 14px 0 10px;
+    align-items: stretch;
+  }
+
+  .brand {
+    align-items: center;
+  }
+
+  .brand-mark {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+    flex: 0 0 auto;
+  }
+
+  .brand h1 {
+    font-size: 0.98rem;
+  }
+
+  .brand p {
+    font-size: 0.78rem;
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .nav-menu::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-link {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    font-size: 0.86rem;
+    padding: 9px 11px;
+  }
+
+  main {
+    width: min(100% - 22px, 1180px);
+    margin-top: 18px;
+  }
+
+  .hero {
+    padding: 20px 0 24px;
+  }
+
+  .hero-text h2 {
+    font-size: clamp(2.1rem, 12vw, 3.1rem);
+    letter-spacing: -1.2px;
+    line-height: 1;
+  }
+
+  .hero-text p,
+  .section-header p {
+    font-size: 0.96rem;
+    line-height: 1.65;
+  }
+
+  .identity {
+    gap: 8px;
+  }
+
+  .identity span {
+    font-size: 0.78rem;
+    padding: 8px 10px;
+  }
+
+  .hero-card {
+    padding: 22px;
+    border-radius: 22px;
+  }
+
+  .metric strong {
+    font-size: 1.05rem;
+  }
+
+  .model-grid {
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .model-card {
+    grid-template-columns: 1fr;
+    padding: 22px;
+    gap: 12px;
+    border-radius: 22px;
+  }
+
+  .model-number {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+  }
+
+  .model-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .model-card p {
+    font-size: 0.94rem;
+    line-height: 1.6;
+  }
+
+  .model-card .primary-btn,
+  .primary-btn {
+    grid-column: auto;
+    width: 100%;
+    text-align: center;
+  }
+
+  .section-header {
+    padding: 24px 0 18px;
+  }
+
+  .section-header h2 {
+    font-size: clamp(1.9rem, 10vw, 2.7rem);
+    line-height: 1;
+  }
+
+  .placeholder-box,
+  .info-panel {
+    padding: 22px;
+    border-radius: 22px;
+  }
+
+  footer {
+    width: min(100% - 22px, 1180px);
+    font-size: 0.78rem;
+  }
+}
+
+/* Ajuste para pantallas muy pequeñas */
+@media (max-width: 390px) {
+  .hero-text h2 {
+    font-size: 2rem;
+  }
+
+  .brand h1 {
+    font-size: 0.9rem;
+  }
+
+  .brand p {
+    font-size: 0.72rem;
+  }
+
+  .nav-link {
+    font-size: 0.82rem;
+  }
+
+  .identity span {
+    width: 100%;
+  }
+}
+
+/* Reduce animaciones si el navegador/dispositivo lo solicita */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
