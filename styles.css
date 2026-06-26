@@ -1166,3 +1166,87 @@ footer {
     width: 100%;
   }
 }
+
+/* ============================= */
+/* Modelo ventas / inversión */
+/* ============================= */
+
+.compact-table {
+  margin-top: 18px;
+}
+
+.mini-chart {
+  position: relative;
+  height: 250px;
+  margin-top: 24px;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background:
+    linear-gradient(to right, rgba(228, 221, 212, 0.55) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(228, 221, 212, 0.55) 1px, transparent 1px),
+    rgba(255, 255, 255, 0.56);
+  background-size: 20% 100%, 100% 20%;
+  overflow: hidden;
+}
+
+.chart-line {
+  position: absolute;
+  left: 9%;
+  bottom: 18%;
+  width: 82%;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--primary);
+  transform: rotate(-21deg);
+  transform-origin: left center;
+  opacity: 0.7;
+}
+
+.chart-point {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border-radius: 999px;
+  background: var(--accent);
+  border: 2px solid var(--surface);
+  transform: translate(-50%, 50%);
+}
+
+.chart-point::after {
+  content: attr(data-label);
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+
+.result-panel.sales-result {
+  border-color: rgba(73, 111, 140, 0.45);
+  background: rgba(219, 234, 242, 0.55);
+}
+
+.model-formula {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--primary-dark);
+  font-weight: 800;
+}
+
+@media (max-width: 620px) {
+  .mini-chart {
+    height: 220px;
+  }
+
+  .chart-point::after {
+    display: none;
+  }
+}
