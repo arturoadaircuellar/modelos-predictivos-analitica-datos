@@ -89,3 +89,125 @@ if (studentForm && studentResult) {
     `;
   });
 }
+
+/* ============================= */
+/* Modelo 02: COVID-19 */
+/* ============================= */
+
+const covidForm = document.getElementById("covidForm");
+const covidResult = document.getElementById("covidResult");
+
+function predictCovidRisk(data) {
+  let score = 0;
+
+  if (data.edad >= 65) {
+    score += 26;
+  } else if (data.edad >= 50) {
+    score += 16;
+  } else if (data.edad >= 35) {
+    score += 8;
+  }
+
+  if (data.oxigenacion < 85) {
+    score += 32;
+  } else if (data.oxigenacion < 90) {
+    score += 24;
+  } else if (data.oxigenacion < 94) {
+    score += 14;
+  } else if (data.oxigenacion < 96) {
+    score += 6;
+  }
+
+  if (data.diagnostico === "moderado") {
+    score += 14;
+  }
+
+  if (data.diagnostico === "grave") {
+    score += 28;
+  }
+
+  if (data.respiracion === 1) {
+    score += 18;
+  }
+
+  if (data.comorbilidad === 1) {
+    score += 16;
+  }
+
+  score += Math.min(data.intervenciones * 4, 18);
+
+  let level = "";
+  let className = "";
+  let explanation = "";
+
+  if (score < 25) {
+    level = "Riesgo bajo";
+    className = "low-risk";
+    explanation =
+      "El caso muestra condiciones relativamente estables dentro de esta simulación. No se observan múltiples factores acumulados de riesgo.";
+  } else if (score < 50) {
+    level = "Riesgo moderado";
+    className = "medium-risk";
+    explanation =
+      "El caso presenta algunos factores que requieren atención, como edad, síntomas o condiciones clínicas que elevan el riesgo estimado.";
+  } else if (score < 75) {
+    level = "Riesgo alto";
+    className = "high-risk";
+    explanation =
+      "El caso acumula varios factores relevantes de riesgo. La simulación lo clasifica como un escenario que requiere mayor prioridad de seguimiento.";
+  } else {
+    level = "Riesgo crítico";
+    className = "critical-risk";
+    explanation =
+      "El caso concentra condiciones de mayor gravedad dentro de la simulación, especialmente por oxigenación baja, diagnóstico grave o múltiples factores acumulados.";
+  }
+
+  const confidence = Math.min(95, Math.max(58, Math.round(58 + score * 0.42)));
+
+  return {
+    score,
+    level,
+    className,
+    explanation,
+    confidence
+  };
+}
+
+if (covidForm && covidResult) {
+  covidForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const data = {
+      edad: Number(document.getElementById("edadCovid").value),
+      oxigenacion: Number(document.getElementById("oxigenacionCovid").value),
+      diagnostico: document.getElementById("diagnosticoCovid").value,
+      respiracion: Number(document.getElementById("respiracionCovid").value),
+      comorbilidad: Number(document.getElementById("comorbilidadCovid").value),
+      intervenciones: Number(document.getElementById("intervencionesCovid").value)
+    };
+
+    const prediction = predictCovidRisk(data);
+
+    covidResult.classList.remove(
+      "low-risk",
+      "medium-risk",
+      "high-risk",
+      "critical-risk"
+    );
+
+    covidResult.classList.add(prediction.className);
+
+    covidResult.innerHTML = `
+      <span class="dashboard-label">Resultado del simulador</span>
+      <h3>${prediction.level}</h3>
+      <p>${prediction.explanation}</p>
+      <div class="risk-pill">Puntaje estimado: ${prediction.score}/100</div>
+      <div class="result-confidence">
+        Confianza interpretativa: ${prediction.confidence}%
+      </div>
+      <p class="risk-detail">
+        Este resultado es únicamente una simulación académica y no debe interpretarse como diagnóstico médico.
+      </p>
+    `;
+  });
+}
