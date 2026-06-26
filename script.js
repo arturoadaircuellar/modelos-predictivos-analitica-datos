@@ -1,31 +1,29 @@
-const navButtons = document.querySelectorAll("[data-section]");
 const sections = document.querySelectorAll(".page-section");
+const navLinks = document.querySelectorAll(".nav-link");
+const navigationTriggers = document.querySelectorAll("[data-section]");
+
+let currentSection = "inicio";
 
 function showSection(sectionId) {
-  sections.forEach((section) => {
-    section.classList.remove("active-section");
-  });
+  if (!sectionId || sectionId === currentSection) return;
 
   const targetSection = document.getElementById(sectionId);
+  if (!targetSection) return;
 
-  if (targetSection) {
-    targetSection.classList.add("active-section");
-  }
-
-  document.querySelectorAll(".nav-link").forEach((button) => {
-    button.classList.remove("active");
+  sections.forEach((section) => {
+    section.classList.toggle("active-section", section.id === sectionId);
   });
 
-  document.querySelectorAll(`.nav-link[data-section="${sectionId}"]`).forEach((button) => {
-    button.classList.add("active");
+  navLinks.forEach((link) => {
+    link.classList.toggle("active", link.dataset.section === sectionId);
   });
 
+  currentSection = sectionId;
   window.scrollTo(0, 0);
 }
 
-navButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const sectionId = button.getAttribute("data-section");
-    showSection(sectionId);
+navigationTriggers.forEach((trigger) => {
+  trigger.addEventListener("click", () => {
+    showSection(trigger.dataset.section);
   });
 });
