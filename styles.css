@@ -685,3 +685,65 @@ button {
     scroll-behavior: auto !important;
   }
 }
+
+.model-card {
+  display: grid;
+  grid-template-columns: 72px minmax(220px, 0.8fr) minmax(320px, 1.2fr) max-content;
+  grid-template-areas: "number title description action";
+  align-items: center;
+  column-gap: 24px;
+  row-gap: 14px;
+}
+
+.model-card .model-number {
+  grid-area: number;
+}
+
+.model-card h3 {
+  grid-area: title;
+}
+
+.model-card p {
+  grid-area: description;
+  max-width: none;
+}
+
+.model-card .primary-btn {
+  grid-area: action;
+  min-width: 132px;
+  width: auto;
+  text-align: center;
+}
+
+/* Tablet: evita que el botón se vaya a una columna pequeña */
+@media (max-width: 1050px) {
+  .model-card {
+    grid-template-columns: 64px 1fr;
+    grid-template-areas:
+      "number title"
+      "number description"
+      ". action";
+  }
+
+  .model-card .primary-btn {
+    width: fit-content;
+    min-width: 140px;
+  }
+}
+
+/* Celular: todo en una sola columna para que nada se encime */
+@media (max-width: 720px) {
+  .model-card {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "number"
+      "title"
+      "description"
+      "action";
+  }
+
+  .model-card .primary-btn {
+    width: 100%;
+    min-width: 0;
+  }
+}
