@@ -59,7 +59,7 @@
 
             <div class="summary-item">
               <span>Estado actual</span>
-              <strong>Preparando módulos predictivos</strong>
+              <strong>Versión 1.0</strong>
             </div>
           </div>
 
@@ -73,7 +73,7 @@
         <article class="model-card">
           <div class="model-status">
             <span class="model-number">01</span>
-            <span class="status-badge suspended">En suspensión</span>
+            <span class="status-badge suspended">Activo</span>
           </div>
 
           <div class="model-content">
@@ -124,45 +124,207 @@
     </section>
 
     <section id="alumnos" class="page-section">
-      <div class="section-top">
-        <div class="section-header">
-          <span class="tag">Modelo 01</span>
-          <h2>Predicción académica de alumnos</h2>
-          <p>
-            Este modelo utiliza variables académicas para estimar si un alumno tiene mayor probabilidad
-            de aprobar o reprobar.
-          </p>
+  <div class="section-top">
+    <div class="section-header">
+      <span class="tag">Modelo 01 · Activo</span>
+      <h2>Predicción académica de alumnos</h2>
+      <p>
+        Modelo de clasificación basado en Random Forest que estima el resultado académico de un alumno
+        a partir de tres variables principales: horas de estudio, porcentaje de asistencia y entrega de tareas.
+      </p>
+    </div>
+
+    <aside class="quick-panel">
+      <h3>Resumen del modelo</h3>
+      <div class="quick-row">
+        <span>Estado</span>
+        <strong>Activo</strong>
+      </div>
+      <div class="quick-row">
+        <span>Técnica</span>
+        <strong>Random Forest</strong>
+      </div>
+      <div class="quick-row">
+        <span>Tipo</span>
+        <strong>Clasificación</strong>
+      </div>
+      <div class="quick-row">
+        <span>Salida</span>
+        <strong>Aprobado / Reprobado</strong>
+      </div>
+    </aside>
+  </div>
+
+  <div class="model-dashboard">
+    <article class="dashboard-card">
+      <span class="dashboard-label">Precisión</span>
+      <strong>100%</strong>
+      <p>Resultado obtenido en el conjunto de prueba del modelo trabajado durante la práctica.</p>
+    </article>
+
+    <article class="dashboard-card">
+      <span class="dashboard-label">Variables</span>
+      <strong>3</strong>
+      <p>Horas de estudio, asistencia y tareas entregadas.</p>
+    </article>
+
+    <article class="dashboard-card">
+      <span class="dashboard-label">Evaluación</span>
+      <strong>5 casos</strong>
+      <p>Casos utilizados para comparar valores reales contra predicciones.</p>
+    </article>
+  </div>
+
+  <div class="content-grid">
+    <section class="analysis-panel">
+      <h3>Importancia de variables</h3>
+      <p>
+        La variable con mayor peso dentro del modelo fue el tiempo de estudio, seguida por la asistencia
+        y finalmente la entrega de tareas.
+      </p>
+
+      <div class="importance-list">
+        <div class="importance-item">
+          <div class="importance-head">
+            <span>Horas de estudio</span>
+            <strong>49.5%</strong>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width: 49.5%;"></div>
+          </div>
         </div>
 
-        <aside class="quick-panel">
-          <h3>Resumen del modelo</h3>
-          <div class="quick-row">
-            <span>Estado</span>
-            <strong>En suspensión</strong>
+        <div class="importance-item">
+          <div class="importance-head">
+            <span>Asistencia</span>
+            <strong>33.8%</strong>
           </div>
-          <div class="quick-row">
-            <span>Técnica</span>
-            <strong>Random Forest</strong>
+          <div class="bar-track">
+            <div class="bar-fill" style="width: 33.8%;"></div>
           </div>
-          <div class="quick-row">
-            <span>Tipo</span>
-            <strong>Clasificación</strong>
-          </div>
-          <div class="quick-row">
-            <span>Salida</span>
-            <strong>Aprobado / Reprobado</strong>
-          </div>
-        </aside>
-      </div>
+        </div>
 
-      <div class="placeholder-box">
-        <h3>Módulo en preparación</h3>
-        <p>
-          Aquí integraremos el dashboard del modelo de alumnos, sus métricas, variables principales y
-          un simulador interactivo.
-        </p>
+        <div class="importance-item">
+          <div class="importance-head">
+            <span>Tareas entregadas</span>
+            <strong>16.7%</strong>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width: 16.7%;"></div>
+          </div>
+        </div>
       </div>
     </section>
+
+    <section class="analysis-panel">
+      <h3>Matriz de confusión simplificada</h3>
+      <p>
+        En la evaluación del modelo, las predicciones coincidieron con los resultados reales en los
+        casos de prueba utilizados.
+      </p>
+
+      <div class="confusion-grid">
+        <div class="confusion-cell header"></div>
+        <div class="confusion-cell header">Pred. Aprobado</div>
+        <div class="confusion-cell header">Pred. Reprobado</div>
+
+        <div class="confusion-cell header">Real Aprobado</div>
+        <div class="confusion-cell success">3</div>
+        <div class="confusion-cell">0</div>
+
+        <div class="confusion-cell header">Real Reprobado</div>
+        <div class="confusion-cell">0</div>
+        <div class="confusion-cell success">2</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="content-grid">
+    <section class="predictor-panel">
+      <h3>Simulador predictivo</h3>
+      <p>
+        Ingresa los datos de un alumno para estimar su resultado académico.
+      </p>
+
+      <form id="studentForm" class="predictor-form">
+        <label>
+          Horas de estudio
+          <input type="number" id="horasEstudio" min="0" max="25" value="10" required />
+        </label>
+
+        <label>
+          Porcentaje de asistencia
+          <input type="number" id="asistenciaAlumno" min="0" max="100" value="80" required />
+        </label>
+
+        <label>
+          Entrega de tareas
+          <select id="tareasAlumno" required>
+            <option value="1">Sí entregó tareas</option>
+            <option value="0">No entregó tareas</option>
+          </select>
+        </label>
+
+        <button type="submit" class="primary-btn">Generar predicción</button>
+      </form>
+    </section>
+
+    <section class="result-panel" id="studentResult">
+      <span class="dashboard-label">Resultado del simulador</span>
+      <h3>Esperando datos</h3>
+      <p>
+        Completa el formulario para visualizar la predicción del modelo.
+      </p>
+    </section>
+  </div>
+
+  <section class="analysis-panel examples-panel">
+    <h3>Ejemplos de predicción generados</h3>
+    <div class="examples-table">
+      <div class="table-row table-head">
+        <span>Horas</span>
+        <span>Asistencia</span>
+        <span>Tareas</span>
+        <span>Predicción</span>
+      </div>
+
+      <div class="table-row">
+        <span>14</span>
+        <span>50%</span>
+        <span>Sí</span>
+        <strong>Aprobado</strong>
+      </div>
+
+      <div class="table-row">
+        <span>3</span>
+        <span>95%</span>
+        <span>Sí</span>
+        <strong>Reprobado</strong>
+      </div>
+
+      <div class="table-row">
+        <span>16</span>
+        <span>45%</span>
+        <span>No</span>
+        <strong>Reprobado</strong>
+      </div>
+
+      <div class="table-row">
+        <span>11</span>
+        <span>85%</span>
+        <span>Sí</span>
+        <strong>Aprobado</strong>
+      </div>
+
+      <div class="table-row">
+        <span>7</span>
+        <span>60%</span>
+        <span>No</span>
+        <strong>Reprobado</strong>
+      </div>
+    </div>
+  </section>
+</section>
 
     <section id="covid" class="page-section">
       <div class="section-top">
