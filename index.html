@@ -90,7 +90,7 @@
         <article class="model-card">
           <div class="model-status">
             <span class="model-number">02</span>
-            <span class="status-badge suspended">En suspensión</span>
+            <span class="status-badge suspended">Activo</span>
           </div>
 
           <div class="model-content">
@@ -107,7 +107,7 @@
         <article class="model-card">
           <div class="model-status">
             <span class="model-number">03</span>
-            <span class="status-badge suspended">En suspensión</span>
+            <span class="status-badge suspended">Activo</span>
           </div>
 
           <div class="model-content">
@@ -327,45 +327,173 @@
 </section>
 
     <section id="covid" class="page-section">
-      <div class="section-top">
-        <div class="section-header">
-          <span class="tag">Modelo 02</span>
-          <h2>Modelo de mortalidad COVID-19</h2>
-          <p>
-            Módulo demostrativo adaptado para web estática, basado en la lógica del modelo trabajado
-            en Python con conexión a base de datos.
-          </p>
-        </div>
+  <div class="section-top">
+    <div class="section-header">
+      <span class="tag">Modelo 02 · Activo</span>
+      <h2>Modelo de mortalidad COVID-19</h2>
+      <p>
+        Módulo demostrativo adaptado para web estática, basado en la lógica de un modelo de clasificación
+        desarrollado en Python. Su objetivo es estimar un nivel de riesgo a partir de variables clínicas,
+        diagnóstico e intervenciones registradas.
+      </p>
+    </div>
 
-        <aside class="quick-panel">
-          <h3>Resumen del modelo</h3>
-          <div class="quick-row">
-            <span>Estado</span>
-            <strong>En suspensión</strong>
-          </div>
-          <div class="quick-row">
-            <span>Técnica</span>
-            <strong>Random Forest</strong>
-          </div>
-          <div class="quick-row">
-            <span>Tipo</span>
-            <strong>Clasificación</strong>
-          </div>
-          <div class="quick-row">
-            <span>Salida</span>
-            <strong>Nivel de riesgo</strong>
-          </div>
-        </aside>
+    <aside class="quick-panel">
+      <h3>Resumen del modelo</h3>
+      <div class="quick-row">
+        <span>Estado</span>
+        <strong>Activo</strong>
       </div>
+      <div class="quick-row">
+        <span>Técnica base</span>
+        <strong>Random Forest</strong>
+      </div>
+      <div class="quick-row">
+        <span>Tipo</span>
+        <strong>Clasificación</strong>
+      </div>
+      <div class="quick-row">
+        <span>Salida</span>
+        <strong>Nivel de riesgo</strong>
+      </div>
+    </aside>
+  </div>
 
-      <div class="placeholder-box">
-        <h3>Módulo en preparación</h3>
-        <p>
-          Aquí construiremos el análisis de riesgo, el dashboard explicativo y el formulario predictivo
-          del modelo COVID-19.
-        </p>
+  <div class="model-dashboard">
+    <article class="dashboard-card">
+      <span class="dashboard-label">Enfoque</span>
+      <strong>Riesgo</strong>
+      <p>El modelo estima una categoría de riesgo clínico a partir de variables de entrada.</p>
+    </article>
+
+    <article class="dashboard-card">
+      <span class="dashboard-label">Variables</span>
+      <strong>6</strong>
+      <p>Edad, oxigenación, diagnóstico, síntomas, comorbilidades e intervenciones.</p>
+    </article>
+
+    <article class="dashboard-card">
+      <span class="dashboard-label">Adaptación</span>
+      <strong>Web</strong>
+      <p>La lógica fue convertida a JavaScript para funcionar en GitHub Pages sin servidor.</p>
+    </article>
+  </div>
+
+  <div class="content-grid">
+    <section class="analysis-panel">
+      <h3>Variables consideradas</h3>
+      <p>
+        Para esta versión web se utilizan variables representativas del modelo original, transformadas
+        en una lógica interpretativa para permitir la simulación directamente en el navegador.
+      </p>
+
+      <div class="variable-list">
+        <span>Edad del paciente</span>
+        <span>Oxigenación</span>
+        <span>Diagnóstico</span>
+        <span>Síntomas respiratorios</span>
+        <span>Comorbilidades</span>
+        <span>Intervenciones</span>
       </div>
     </section>
+
+    <section class="analysis-panel">
+      <h3>Escala de interpretación</h3>
+      <p>
+        El resultado se clasifica en cuatro niveles para facilitar la lectura del riesgo estimado.
+      </p>
+
+      <div class="risk-scale">
+        <div class="risk-item low">
+          <strong>Bajo</strong>
+          <span>Condiciones estables</span>
+        </div>
+        <div class="risk-item medium">
+          <strong>Moderado</strong>
+          <span>Factores de atención</span>
+        </div>
+        <div class="risk-item high">
+          <strong>Alto</strong>
+          <span>Riesgo considerable</span>
+        </div>
+        <div class="risk-item critical">
+          <strong>Crítico</strong>
+          <span>Alta prioridad</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="content-grid">
+    <section class="predictor-panel">
+      <h3>Simulador predictivo</h3>
+      <p>
+        Ingresa las condiciones del paciente para estimar un nivel de riesgo.
+      </p>
+
+      <form id="covidForm" class="predictor-form">
+        <label>
+          Edad del paciente
+          <input type="number" id="edadCovid" min="0" max="110" value="45" required />
+        </label>
+
+        <label>
+          Saturación de oxígeno (%)
+          <input type="number" id="oxigenacionCovid" min="50" max="100" value="94" required />
+        </label>
+
+        <label>
+          Diagnóstico principal
+          <select id="diagnosticoCovid" required>
+            <option value="leve">Cuadro leve</option>
+            <option value="moderado">Cuadro moderado</option>
+            <option value="grave">Neumonía o cuadro grave</option>
+          </select>
+        </label>
+
+        <label>
+          Dificultad respiratoria
+          <select id="respiracionCovid" required>
+            <option value="0">No presenta</option>
+            <option value="1">Sí presenta</option>
+          </select>
+        </label>
+
+        <label>
+          Comorbilidades
+          <select id="comorbilidadCovid" required>
+            <option value="0">Sin comorbilidades relevantes</option>
+            <option value="1">Con comorbilidades</option>
+          </select>
+        </label>
+
+        <label>
+          Intervenciones registradas
+          <input type="number" id="intervencionesCovid" min="0" max="10" value="1" required />
+        </label>
+
+        <button type="submit" class="primary-btn">Calcular riesgo</button>
+      </form>
+    </section>
+
+    <section class="result-panel" id="covidResult">
+      <span class="dashboard-label">Resultado del simulador</span>
+      <h3>Esperando datos</h3>
+      <p>
+        Completa el formulario para visualizar el nivel de riesgo estimado.
+      </p>
+    </section>
+  </div>
+
+  <section class="analysis-panel examples-panel">
+    <h3>Nota sobre el modelo</h3>
+    <p>
+      Este módulo es una adaptación académica para una página web estática. No sustituye una valoración
+      médica ni representa un sistema clínico real; su propósito es demostrar cómo un modelo predictivo
+      puede presentarse de manera visual, interpretativa e interactiva.
+    </p>
+  </section>
+</section>
 
     <section id="ventas" class="page-section">
       <div class="section-top">
