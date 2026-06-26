@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modelos Predictivos – Analítica de Datos</title>
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">MP</span>
+      <div>
+        <h1>Modelos Predictivos</h1>
+        <p>Analítica de Datos</p>
+      </div>
+    </div>
+
+    <nav class="nav-menu">
+      <button class="nav-link active" data-section="inicio">Inicio</button>
+      <button class="nav-link" data-section="alumnos">Alumnos</button>
+      <button class="nav-link" data-section="covid">COVID-19</button>
+      <button class="nav-link" data-section="ventas">Ventas/Inversión</button>
+      <button class="nav-link" data-section="proyecto">Proyecto</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <section id="inicio" class="page-section active-section">
+      <div class="hero">
+        <div class="hero-text">
+          <span class="tag">Dashboard académico predictivo</span>
+          <h2>Modelos Predictivos – Analítica de Datos</h2>
+          <p>
+            Plataforma web que integra tres modelos predictivos desarrollados durante el semestre:
+            predicción académica de alumnos, análisis de mortalidad COVID-19 y estimación de ventas
+            a partir de inversión publicitaria.
+          </p>
+
+          <div class="identity">
+            <span>Arturo Adair Cuellar Cervantes</span>
+            <span>IPN · UPIICSA</span>
+            <span>Profesor: Ing. Andrade Cedillo Marco Fernando</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <h3>Resumen general</h3>
+          <div class="metric">
+            <span>Modelos integrados</span>
+            <strong>3</strong>
+          </div>
+          <div class="metric">
+            <span>Técnicas utilizadas</span>
+            <strong>Clasificación · Regresión</strong>
+          </div>
+          <div class="metric">
+            <span>Enfoque</span>
+            <strong>Dashboard + simulador</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="model-grid">
+        <article class="model-card">
+          <span class="model-number">01</span>
+          <h3>Predicción académica de alumnos</h3>
+          <p>
+            Modelo de clasificación para estimar si un alumno puede aprobar o reprobar con base en
+            variables académicas como estudio, asistencia y tareas.
+          </p>
+          <button class="primary-btn" data-section="alumnos">Abrir modelo</button>
+        </article>
+
+        <article class="model-card">
+          <span class="model-number">02</span>
+          <h3>Mortalidad COVID-19</h3>
+          <p>
+            Módulo demostrativo adaptado para web estática que estima un nivel de riesgo a partir
+            de variables clínicas e intervenciones.
+          </p>
+          <button class="primary-btn" data-section="covid">Abrir modelo</button>
+        </article>
+
+        <article class="model-card">
+          <span class="model-number">03</span>
+          <h3>Ventas e inversión publicitaria</h3>
+          <p>
+            Modelo de regresión lineal que estima ventas esperadas según la inversión publicitaria
+            registrada.
+          </p>
+          <button class="primary-btn" data-section="ventas">Abrir modelo</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="alumnos" class="page-section">
+      <div class="section-header">
+        <span class="tag">Modelo 01</span>
+        <h2>Predicción académica de alumnos</h2>
+        <p>
+          Este modelo utiliza variables académicas para estimar si un alumno tiene mayor probabilidad
+          de aprobar o reprobar.
+        </p>
+      </div>
+
+      <div class="placeholder-box">
+        <h3>Próximo paso</h3>
+        <p>
+          Aquí integraremos el dashboard del modelo de alumnos, sus métricas, variables principales y
+          un simulador interactivo.
+        </p>
+      </div>
+    </section>
+
+    <section id="covid" class="page-section">
+      <div class="section-header">
+        <span class="tag">Modelo 02</span>
+        <h2>Modelo de mortalidad COVID-19</h2>
+        <p>
+          Módulo demostrativo adaptado para web estática, basado en la lógica del modelo trabajado
+          en Python con conexión a base de datos.
+        </p>
+      </div>
+
+      <div class="placeholder-box">
+        <h3>Próximo paso</h3>
+        <p>
+          Aquí construiremos el análisis de riesgo, el dashboard explicativo y el formulario predictivo
+          del modelo COVID-19.
+        </p>
+      </div>
+    </section>
+
+    <section id="ventas" class="page-section">
+      <div class="section-header">
+        <span class="tag">Modelo 03</span>
+        <h2>Predicción de ventas por inversión publicitaria</h2>
+        <p>
+          Este modelo estima las ventas esperadas a partir de la inversión publicitaria mediante una
+          regresión lineal simple.
+        </p>
+      </div>
+
+      <div class="placeholder-box">
+        <h3>Próximo paso</h3>
+        <p>
+          Aquí agregaremos la fórmula del modelo, gráfica de datos históricos, predicción interactiva
+          y tabla de valores.
+        </p>
+      </div>
+    </section>
+
+    <section id="proyecto" class="page-section">
+      <div class="section-header">
+        <span class="tag">Información académica</span>
+        <h2>Acerca del proyecto</h2>
+        <p>
+          Proyecto web desarrollado como integración final de modelos predictivos aplicados a distintos
+          contextos de análisis de datos.
+        </p>
+      </div>
+
+      <div class="info-panel">
+        <p><strong>Alumno:</strong> Arturo Adair Cuellar Cervantes</p>
+        <p><strong>Institución:</strong> IPN · UPIICSA</p>
+        <p><strong>Profesor:</strong> Ing. Andrade Cedillo Marco Fernando</p>
+        <p><strong>Nombre del proyecto:</strong> Modelos Predictivos – Analítica de Datos</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Modelos Predictivos – Analítica de Datos · IPN · UPIICSA</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
