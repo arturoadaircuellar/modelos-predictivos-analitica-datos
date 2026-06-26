@@ -1050,3 +1050,119 @@ footer {
     font-size: 1.7rem;
   }
 }
+
+/* ============================= */
+/* Modelo COVID-19 */
+/* ============================= */
+
+.variable-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.variable-list span {
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: var(--surface-soft);
+  color: var(--primary-dark);
+  border: 1px solid var(--border);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.risk-scale {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.risk-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.risk-item strong {
+  font-size: 0.98rem;
+}
+
+.risk-item span {
+  color: var(--muted);
+  font-size: 0.88rem;
+  text-align: right;
+}
+
+.risk-item.low strong {
+  color: #5f8f6a;
+}
+
+.risk-item.medium strong {
+  color: #b88444;
+}
+
+.risk-item.high strong {
+  color: #b56b55;
+}
+
+.risk-item.critical strong {
+  color: #9d4d4d;
+}
+
+.result-panel.low-risk {
+  border-color: rgba(95, 143, 106, 0.55);
+  background: rgba(225, 240, 229, 0.62);
+}
+
+.result-panel.medium-risk {
+  border-color: rgba(184, 132, 68, 0.55);
+  background: rgba(245, 230, 209, 0.62);
+}
+
+.result-panel.high-risk {
+  border-color: rgba(181, 107, 85, 0.55);
+  background: rgba(242, 216, 216, 0.62);
+}
+
+.result-panel.critical-risk {
+  border-color: rgba(157, 77, 77, 0.6);
+  background: rgba(242, 216, 216, 0.78);
+}
+
+.risk-pill {
+  width: fit-content;
+  margin-top: 16px;
+  padding: 11px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.68);
+  color: var(--primary-dark);
+  font-weight: 800;
+}
+
+.risk-detail {
+  margin-top: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 620px) {
+  .risk-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .risk-item span {
+    text-align: left;
+  }
+
+  .variable-list span {
+    width: 100%;
+  }
+}
