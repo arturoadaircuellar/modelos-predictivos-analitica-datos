@@ -9,12 +9,12 @@
   --primary-dark: #2f526b;
   --accent: #d7a86e;
   --accent-soft: #f3dfc6;
-  --sage: #c9d8c5;
   --blue-soft: #dbeaf2;
-  --rose-soft: #f2d8d8;
   --border: #e4ddd4;
   --radius: 24px;
 }
+
+/* Base */
 
 * {
   box-sizing: border-box;
@@ -22,15 +22,33 @@
   padding: 0;
 }
 
-html {
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
   scroll-behavior: auto;
 }
 
 body {
+  min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
   background: linear-gradient(180deg, var(--bg-soft) 0%, var(--bg) 100%);
   color: var(--text);
-  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+p,
+span,
+strong,
+button {
+  overflow-wrap: break-word;
+}
+
+button {
+  font-family: inherit;
 }
 
 /* Barra superior */
@@ -54,6 +72,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
 }
 
 .brand-mark {
@@ -62,6 +81,7 @@ body {
   border-radius: 15px;
   display: grid;
   place-items: center;
+  flex: 0 0 auto;
   background: var(--primary);
   color: #ffffff;
   font-weight: 800;
@@ -84,6 +104,7 @@ body {
   flex-wrap: wrap;
   gap: 8px;
   justify-content: flex-end;
+  max-width: 100%;
 }
 
 .nav-link {
@@ -95,6 +116,7 @@ body {
   cursor: pointer;
   font-weight: 600;
   transition: background 0.15s ease, color 0.15s ease, border 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .nav-link:hover {
@@ -127,17 +149,14 @@ main {
 
 .hero {
   display: grid;
-  grid-template-columns: 1.3fr 0.7fr;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
   gap: 44px;
   align-items: center;
   padding: 46px 0 34px;
 }
 
 .hero-text {
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  padding: 0;
+  min-width: 0;
 }
 
 .tag {
@@ -152,19 +171,19 @@ main {
 }
 
 .hero-text h2 {
+  max-width: 820px;
+  margin-bottom: 22px;
+  color: var(--primary-dark);
   font-size: clamp(2.4rem, 5vw, 4.9rem);
   line-height: 0.96;
   letter-spacing: -2px;
-  margin-bottom: 22px;
-  color: var(--primary-dark);
-  max-width: 820px;
 }
 
 .hero-text p {
+  max-width: 790px;
   color: var(--muted);
   font-size: 1.08rem;
   line-height: 1.75;
-  max-width: 790px;
 }
 
 .identity {
@@ -183,7 +202,7 @@ main {
   font-size: 0.86rem;
 }
 
-/* Panel resumen menos pesado */
+/* Resumen general */
 
 .hero-card {
   background: var(--surface);
@@ -191,6 +210,7 @@ main {
   border-radius: 28px;
   padding: 30px;
   box-shadow: none;
+  min-width: 0;
 }
 
 .hero-card h3 {
@@ -220,7 +240,7 @@ main {
   font-size: 1.2rem;
 }
 
-/* Modelos en estilo más editorial, menos tarjeta IA */
+/* Lista de modelos */
 
 .model-grid {
   display: grid;
@@ -236,11 +256,13 @@ main {
   box-shadow: none;
   padding: 26px 28px;
   display: grid;
-  grid-template-columns: 80px 1fr auto;
-  gap: 22px;
+  grid-template-columns: 70px minmax(180px, 0.8fr) minmax(260px, 1.2fr) auto;
+  grid-template-areas: "number title description action";
   align-items: center;
-  position: relative;
-  overflow: hidden;
+  column-gap: 24px;
+  row-gap: 14px;
+  min-width: 0;
+  overflow: visible;
 }
 
 .model-card::before {
@@ -248,6 +270,7 @@ main {
 }
 
 .model-number {
+  grid-area: number;
   width: 58px;
   height: 58px;
   border-radius: 18px;
@@ -260,28 +283,37 @@ main {
 }
 
 .model-card h3 {
-  margin: 0 0 7px;
+  grid-area: title;
+  margin: 0;
   color: var(--primary-dark);
   font-size: 1.25rem;
+  line-height: 1.22;
+  min-width: 0;
 }
 
 .model-card p {
+  grid-area: description;
   color: var(--muted);
   line-height: 1.6;
-  min-height: auto;
-  max-width: 760px;
+  font-size: 0.98rem;
+  min-width: 0;
 }
 
 .primary-btn {
+  grid-area: action;
   border: none;
-  padding: 12px 16px;
+  min-width: 138px;
+  width: max-content;
+  padding: 12px 18px;
   background: var(--primary);
   color: #ffffff;
   border-radius: 15px;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.15s ease, transform 0.15s ease;
+  text-align: center;
   white-space: nowrap;
+  transition: background 0.15s ease, transform 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .primary-btn:hover {
@@ -315,25 +347,7 @@ main {
   font-size: 1.02rem;
 }
 
-.placeholder-box {
-  background: rgba(255, 255, 255, 0.68);
-  border: 1px solid var(--border);
-  border-radius: 26px;
-  box-shadow: none;
-  padding: 32px;
-  margin-top: 26px;
-}
-
-.placeholder-box h3 {
-  color: var(--primary-dark);
-  margin-bottom: 10px;
-}
-
-.placeholder-box p {
-  color: var(--muted);
-  line-height: 1.7;
-}
-
+.placeholder-box,
 .info-panel {
   background: rgba(255, 255, 255, 0.68);
   border: 1px solid var(--border);
@@ -343,15 +357,26 @@ main {
   margin-top: 26px;
 }
 
+.placeholder-box h3 {
+  color: var(--primary-dark);
+  margin-bottom: 10px;
+}
+
+.placeholder-box p,
 .info-panel p {
   color: var(--muted);
-  line-height: 1.8;
+  line-height: 1.75;
+}
+
+.info-panel p {
   margin-bottom: 8px;
 }
 
 .info-panel strong {
   color: var(--primary-dark);
 }
+
+/* Footer */
 
 footer {
   width: min(1180px, calc(100% - 32px));
@@ -363,13 +388,14 @@ footer {
   font-size: 0.86rem;
 }
 
-/* Responsive */
+/* Tablet */
 
-@media (max-width: 900px) {
+@media (max-width: 1050px) {
   .topbar {
     align-items: flex-start;
     flex-direction: column;
     position: static;
+    gap: 14px;
   }
 
   .nav-menu {
@@ -378,160 +404,43 @@ footer {
 
   .hero {
     grid-template-columns: 1fr;
-    gap: 26px;
-    padding-top: 26px;
+    gap: 28px;
+    padding-top: 28px;
+  }
+
+  .hero-text h2 {
+    max-width: 100%;
   }
 
   .model-card {
-    grid-template-columns: 1fr;
-    gap: 14px;
+    grid-template-columns: 64px minmax(0, 1fr);
+    grid-template-areas:
+      "number title"
+      "number description"
+      ". action";
+    align-items: start;
   }
 
   .primary-btn {
     width: fit-content;
+    min-width: 148px;
   }
 }
 
-@media (max-width: 520px) {
-  main,
-  .topbar,
-  footer {
-    width: min(100% - 22px, 1180px);
-  }
+/* Celular */
 
-  .hero-text h2 {
-    font-size: 2.3rem;
-  }
-
-  .nav-link {
-    padding: 9px 11px;
-    font-size: 0.9rem;
-  }
-
-  .hero-card,
-  .placeholder-box,
-  .info-panel,
-  .model-card {
-    border-radius: 20px;
-  }
-}
-
-/* ============================= */
-/* Optimización y responsividad */
-/* ============================= */
-
-html,
-body {
-  width: 100%;
-  overflow-x: hidden;
-}
-
-body {
-  text-rendering: optimizeLegibility;
-}
-
-/* Evita que textos largos rompan módulos */
-h1,
-h2,
-h3,
-p,
-span,
-button,
-strong {
-  overflow-wrap: break-word;
-}
-
-/* Mejora la barra superior en pantallas medianas */
-.topbar {
-  min-height: auto;
-}
-
-.nav-menu {
-  max-width: 100%;
-}
-
-/* Evita encimados en tarjetas horizontales */
-.model-card {
-  min-width: 0;
-}
-
-.model-card > * {
-  min-width: 0;
-}
-
-/* Botones más estables */
-button {
-  font-family: inherit;
-}
-
-.primary-btn,
-.nav-link {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Secciones más ligeras */
-.page-section {
-  min-height: auto;
-}
-
-/* Ajuste para tablets */
-@media (max-width: 1024px) {
-  .topbar {
-    width: min(100% - 28px, 1180px);
-    gap: 16px;
-  }
-
-  .nav-menu {
-    gap: 6px;
-  }
-
-  .nav-link {
-    padding: 9px 12px;
-    font-size: 0.92rem;
-  }
-
-  .hero {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-
-  .hero-text h2 {
-    max-width: 100%;
-  }
-
-  .hero-card {
-    max-width: 100%;
-  }
-
-  .model-card {
-    grid-template-columns: 64px 1fr;
-  }
-
-  .model-card .primary-btn {
-    grid-column: 2;
-    width: fit-content;
-  }
-}
-
-/* Ajuste para celulares */
 @media (max-width: 720px) {
   .topbar {
-    position: static;
     width: min(100% - 22px, 1180px);
     margin-top: 12px;
     padding: 14px 0 10px;
     align-items: stretch;
   }
 
-  .brand {
-    align-items: center;
-  }
-
   .brand-mark {
     width: 42px;
     height: 42px;
     border-radius: 13px;
-    flex: 0 0 auto;
   }
 
   .brand h1 {
@@ -546,6 +455,7 @@ button {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
+    gap: 7px;
     padding-bottom: 4px;
     scrollbar-width: none;
   }
@@ -607,6 +517,11 @@ button {
 
   .model-card {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "number"
+      "title"
+      "description"
+      "action";
     padding: 22px;
     gap: 12px;
     border-radius: 22px;
@@ -619,7 +534,7 @@ button {
   }
 
   .model-card h3 {
-    font-size: 1.1rem;
+    font-size: 1.12rem;
   }
 
   .model-card p {
@@ -627,11 +542,9 @@ button {
     line-height: 1.6;
   }
 
-  .model-card .primary-btn,
   .primary-btn {
-    grid-column: auto;
     width: 100%;
-    text-align: center;
+    min-width: 0;
   }
 
   .section-header {
@@ -655,7 +568,8 @@ button {
   }
 }
 
-/* Ajuste para pantallas muy pequeñas */
+/* Pantallas muy pequeñas */
+
 @media (max-width: 390px) {
   .hero-text h2 {
     font-size: 2rem;
@@ -678,72 +592,11 @@ button {
   }
 }
 
-/* Reduce animaciones si el navegador/dispositivo lo solicita */
+/* Accesibilidad y fluidez */
+
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
     scroll-behavior: auto !important;
-  }
-}
-
-.model-card {
-  display: grid;
-  grid-template-columns: 72px minmax(220px, 0.8fr) minmax(320px, 1.2fr) max-content;
-  grid-template-areas: "number title description action";
-  align-items: center;
-  column-gap: 24px;
-  row-gap: 14px;
-}
-
-.model-card .model-number {
-  grid-area: number;
-}
-
-.model-card h3 {
-  grid-area: title;
-}
-
-.model-card p {
-  grid-area: description;
-  max-width: none;
-}
-
-.model-card .primary-btn {
-  grid-area: action;
-  min-width: 132px;
-  width: auto;
-  text-align: center;
-}
-
-/* Tablet: evita que el botón se vaya a una columna pequeña */
-@media (max-width: 1050px) {
-  .model-card {
-    grid-template-columns: 64px 1fr;
-    grid-template-areas:
-      "number title"
-      "number description"
-      ". action";
-  }
-
-  .model-card .primary-btn {
-    width: fit-content;
-    min-width: 140px;
-  }
-}
-
-/* Celular: todo en una sola columna para que nada se encime */
-@media (max-width: 720px) {
-  .model-card {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "number"
-      "title"
-      "description"
-      "action";
-  }
-
-  .model-card .primary-btn {
-    width: 100%;
-    min-width: 0;
   }
 }
