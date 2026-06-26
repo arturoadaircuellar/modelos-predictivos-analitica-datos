@@ -7,6 +7,7 @@ function showSection(sectionId) {
   });
 
   const targetSection = document.getElementById(sectionId);
+
   if (targetSection) {
     targetSection.classList.add("active-section");
   }
@@ -15,16 +16,11 @@ function showSection(sectionId) {
     button.classList.remove("active");
   });
 
-  document.querySelectorAll(`[data-section="${sectionId}"]`).forEach((button) => {
-    if (button.classList.contains("nav-link")) {
-      button.classList.add("active");
-    }
+  document.querySelectorAll(`.nav-link[data-section="${sectionId}"]`).forEach((button) => {
+    button.classList.add("active");
   });
 
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+  window.scrollTo(0, 0);
 }
 
 navButtons.forEach((button) => {
