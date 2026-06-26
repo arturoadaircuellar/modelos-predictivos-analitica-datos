@@ -19,6 +19,7 @@ function showSection(sectionId) {
   });
 
   currentSection = sectionId;
+
   window.scrollTo(0, 0);
 }
 
