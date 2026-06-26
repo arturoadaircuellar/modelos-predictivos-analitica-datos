@@ -4,13 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Modelos Predictivos – Analítica de Datos</title>
-
   <link rel="stylesheet" href="styles.css" />
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js" defer></script>
 </head>
-<body>
 
+<body>
   <header class="topbar">
     <div class="brand">
       <span class="brand-mark">MP</span>
@@ -20,7 +18,7 @@
       </div>
     </div>
 
-    <nav class="nav-menu">
+    <nav class="nav-menu" aria-label="Menú principal">
       <button class="nav-link active" data-section="inicio">Inicio</button>
       <button class="nav-link" data-section="alumnos">Alumnos</button>
       <button class="nav-link" data-section="covid">COVID-19</button>
@@ -30,12 +28,16 @@
   </header>
 
   <main>
-
     <section id="inicio" class="page-section active-section">
       <div class="hero">
         <div class="hero-text">
           <span class="tag">Inicio</span>
-          <h2>Sistema bla bla bla</h2>
+          <h2>Modelos Predictivos – Analítica de Datos</h2>
+          <p>
+            Sistema web académico que integra modelos predictivos aplicados a educación,
+            salud y análisis comercial. Cada módulo permite consultar el objetivo del modelo,
+            comprender sus variables principales y probar una predicción de manera sencilla.
+          </p>
 
           <div class="identity">
             <span>Arturo Adair Cuellar Cervantes</span>
@@ -44,68 +46,121 @@
           </div>
         </div>
 
-        <div class="hero-card">
-          <h3>Resumen general</h3>
-          <div class="metric">
-            <span>Modelos integrados</span>
-            <strong>3</strong>
+        <aside class="summary-card">
+          <span class="tag tag-small">Vista rápida</span>
+          <h3>Resumen del panel</h3>
+
+          <div class="summary-list">
+            <div class="summary-item">
+              <span>Modelos integrados</span>
+              <strong>3</strong>
+            </div>
+
+            <div class="summary-item">
+              <span>Técnicas utilizadas</span>
+              <strong>Clasificación · Regresión</strong>
+            </div>
+
+            <div class="summary-item">
+              <span>Estado actual</span>
+              <strong>Preparando módulos predictivos</strong>
+            </div>
           </div>
-          <div class="metric">
-            <span>Técnicas utilizadas</span>
-            <strong>Clasificación · Regresión</strong>
-          </div>
-          <div class="metric">
-            <span>Enfoque</span>
-            <strong>Dashboard + simulador</strong>
-          </div>
-        </div>
+
+          <p class="summary-note">
+            Selecciona un modelo para consultar su resumen, variables principales y simulador.
+          </p>
+        </aside>
       </div>
 
       <div class="model-grid">
         <article class="model-card">
-          <span class="model-number">01</span>
-          <h3>Predicción académica de alumnos</h3>
-          <p>
-            Modelo de clasificación para estimar si un alumno puede aprobar o reprobar con base en
-            variables académicas como estudio, asistencia y tareas.
-          </p>
+          <div class="model-status">
+            <span class="model-number">01</span>
+            <span class="status-badge suspended">En suspensión</span>
+          </div>
+
+          <div class="model-content">
+            <h3>Predicción académica de alumnos</h3>
+            <p>
+              Modelo de clasificación para estimar si un alumno puede aprobar o reprobar con base en
+              variables académicas como estudio, asistencia y tareas.
+            </p>
+          </div>
+
           <button class="primary-btn" data-section="alumnos">Abrir modelo</button>
         </article>
 
         <article class="model-card">
-          <span class="model-number">02</span>
-          <h3>Mortalidad COVID-19</h3>
-          <p>
-            Módulo demostrativo adaptado para web estática que estima un nivel de riesgo a partir
-            de variables clínicas e intervenciones.
-          </p>
+          <div class="model-status">
+            <span class="model-number">02</span>
+            <span class="status-badge suspended">En suspensión</span>
+          </div>
+
+          <div class="model-content">
+            <h3>Mortalidad COVID-19</h3>
+            <p>
+              Módulo demostrativo adaptado para web estática que estima un nivel de riesgo a partir
+              de variables clínicas e intervenciones.
+            </p>
+          </div>
+
           <button class="primary-btn" data-section="covid">Abrir modelo</button>
         </article>
 
         <article class="model-card">
-          <span class="model-number">03</span>
-          <h3>Ventas e inversión publicitaria</h3>
-          <p>
-            Modelo de regresión lineal que estima ventas esperadas según la inversión publicitaria
-            registrada.
-          </p>
+          <div class="model-status">
+            <span class="model-number">03</span>
+            <span class="status-badge suspended">En suspensión</span>
+          </div>
+
+          <div class="model-content">
+            <h3>Ventas e inversión publicitaria</h3>
+            <p>
+              Modelo de regresión lineal que estima ventas esperadas según la inversión publicitaria
+              registrada.
+            </p>
+          </div>
+
           <button class="primary-btn" data-section="ventas">Abrir modelo</button>
         </article>
       </div>
     </section>
 
     <section id="alumnos" class="page-section">
-      <div class="section-header">
-        <span class="tag">Modelo 01</span>
-        <h2>Predicción académica de alumnos</h2>
-        <p>
-          Este modelo utiliza variables académicas para estimar si un alumno tiene mayor probabilidad
-          de aprobar o reprobar.
-        </p>
+      <div class="section-top">
+        <div class="section-header">
+          <span class="tag">Modelo 01</span>
+          <h2>Predicción académica de alumnos</h2>
+          <p>
+            Este modelo utiliza variables académicas para estimar si un alumno tiene mayor probabilidad
+            de aprobar o reprobar.
+          </p>
+        </div>
+
+        <aside class="quick-panel">
+          <h3>Resumen del modelo</h3>
+          <div class="quick-row">
+            <span>Estado</span>
+            <strong>En suspensión</strong>
+          </div>
+          <div class="quick-row">
+            <span>Técnica</span>
+            <strong>Random Forest</strong>
+          </div>
+          <div class="quick-row">
+            <span>Tipo</span>
+            <strong>Clasificación</strong>
+          </div>
+          <div class="quick-row">
+            <span>Salida</span>
+            <strong>Aprobado / Reprobado</strong>
+          </div>
+        </aside>
       </div>
 
       <div class="placeholder-box">
-        <h3>Próximo paso</h3>
+        <h3>Módulo en preparación</h3>
         <p>
           Aquí integraremos el dashboard del modelo de alumnos, sus métricas, variables principales y
           un simulador interactivo.
@@ -114,17 +169,39 @@
     </section>
 
     <section id="covid" class="page-section">
-      <div class="section-header">
-        <span class="tag">Modelo 02</span>
-        <h2>Modelo de mortalidad COVID-19</h2>
-        <p>
-          Módulo demostrativo adaptado para web estática, basado en la lógica del modelo trabajado
-          en Python con conexión a base de datos.
-        </p>
+      <div class="section-top">
+        <div class="section-header">
+          <span class="tag">Modelo 02</span>
+          <h2>Modelo de mortalidad COVID-19</h2>
+          <p>
+            Módulo demostrativo adaptado para web estática, basado en la lógica del modelo trabajado
+            en Python con conexión a base de datos.
+          </p>
+        </div>
+
+        <aside class="quick-panel">
+          <h3>Resumen del modelo</h3>
+          <div class="quick-row">
+            <span>Estado</span>
+            <strong>En suspensión</strong>
+          </div>
+          <div class="quick-row">
+            <span>Técnica</span>
+            <strong>Random Forest</strong>
+          </div>
+          <div class="quick-row">
+            <span>Tipo</span>
+            <strong>Clasificación</strong>
+          </div>
+          <div class="quick-row">
+            <span>Salida</span>
+            <strong>Nivel de riesgo</strong>
+          </div>
+        </aside>
       </div>
 
       <div class="placeholder-box">
-        <h3>Próximo paso</h3>
+        <h3>Módulo en preparación</h3>
         <p>
           Aquí construiremos el análisis de riesgo, el dashboard explicativo y el formulario predictivo
           del modelo COVID-19.
@@ -133,17 +210,39 @@
     </section>
 
     <section id="ventas" class="page-section">
-      <div class="section-header">
-        <span class="tag">Modelo 03</span>
-        <h2>Predicción de ventas por inversión publicitaria</h2>
-        <p>
-          Este modelo estima las ventas esperadas a partir de la inversión publicitaria mediante una
-          regresión lineal simple.
-        </p>
+      <div class="section-top">
+        <div class="section-header">
+          <span class="tag">Modelo 03</span>
+          <h2>Predicción de ventas por inversión publicitaria</h2>
+          <p>
+            Este modelo estima las ventas esperadas a partir de la inversión publicitaria mediante una
+            regresión lineal simple.
+          </p>
+        </div>
+
+        <aside class="quick-panel">
+          <h3>Resumen del modelo</h3>
+          <div class="quick-row">
+            <span>Estado</span>
+            <strong>En suspensión</strong>
+          </div>
+          <div class="quick-row">
+            <span>Técnica</span>
+            <strong>Regresión lineal</strong>
+          </div>
+          <div class="quick-row">
+            <span>Tipo</span>
+            <strong>Regresión</strong>
+          </div>
+          <div class="quick-row">
+            <span>Salida</span>
+            <strong>Ventas estimadas</strong>
+          </div>
+        </aside>
       </div>
 
       <div class="placeholder-box">
-        <h3>Próximo paso</h3>
+        <h3>Módulo en preparación</h3>
         <p>
           Aquí agregaremos la fórmula del modelo, gráfica de datos históricos, predicción interactiva
           y tabla de valores.
@@ -152,13 +251,31 @@
     </section>
 
     <section id="proyecto" class="page-section">
-      <div class="section-header">
-        <span class="tag">Información académica</span>
-        <h2>Acerca del proyecto</h2>
-        <p>
-          Proyecto web desarrollado como integración final de modelos predictivos aplicados a distintos
-          contextos de análisis de datos.
-        </p>
+      <div class="section-top">
+        <div class="section-header">
+          <span class="tag">Información académica</span>
+          <h2>Acerca del proyecto</h2>
+          <p>
+            Proyecto web desarrollado como integración final de modelos predictivos aplicados a distintos
+            contextos de análisis de datos.
+          </p>
+        </div>
+
+        <aside class="quick-panel">
+          <h3>Datos principales</h3>
+          <div class="quick-row">
+            <span>Modelos</span>
+            <strong>3</strong>
+          </div>
+          <div class="quick-row">
+            <span>Área</span>
+            <strong>Analítica de Datos</strong>
+          </div>
+          <div class="quick-row">
+            <span>Publicación</span>
+            <strong>GitHub Pages</strong>
+          </div>
+        </aside>
       </div>
 
       <div class="info-panel">
@@ -168,13 +285,10 @@
         <p><strong>Nombre del proyecto:</strong> Modelos Predictivos – Analítica de Datos</p>
       </div>
     </section>
-
   </main>
 
   <footer>
     <p>Modelos Predictivos – Analítica de Datos · IPN · UPIICSA</p>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
